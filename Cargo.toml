@@ -1,0 +1,14 @@
+[package]
+name = "league-types"
+version = "0.1.0"
+edition = "2021"
+authors = ["Franklin E. Blanco"]
+description = "League-svc types and dtos "
+license = "MIT"
+readme = "README.md"
+repository = "https://github.com/franklinblanco/league-types.git"
+
+# See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
+
+[dependencies]
+err = { git = "https://github.com/franklinblanco/err.git" }
