@@ -9,7 +9,7 @@ use rust_decimal::Decimal;
 use crate::dto::league::LeagueForCreationDto;
 
 
-#[derive(Debug, Serialize, Deserialize)]
+#[derive(Debug, Serialize, Deserialize, Clone, PartialEq, Eq, PartialOrd, Ord, Default)]
 pub struct League {
     pub id: u32,
     pub owner_id: u32,
@@ -32,12 +32,9 @@ pub struct League {
     pub description: Option<String>
 }
 
-impl League {
-    pub fn new() -> League {
-        League { id: 0, owner_id: 0, sport_id: 0, place_id: 0, time_created: Utc::now().naive_utc(), last_updated: Utc::now().naive_utc(), state: "".to_string(), visibility: "".to_string(), date_and_time: Utc::now().naive_utc(), cost_to_join: Decimal::new(0, 0), currency: None, max_players: 0, description: None }
-    }
-    pub fn new_from_league_for_creation_dto(league_dto: LeagueForCreationDto) -> League {
-        League { 
+impl From<LeagueForCreationDto> for League {
+    fn from(league_dto: LeagueForCreationDto) -> Self {
+        Self { 
             id: 0, owner_id: league_dto.user_id, sport_id: league_dto.sport_id, place_id:league_dto.place_id, time_created: Utc::now().naive_utc(), last_updated: Utc::now().naive_utc(), state: LeagueState::Open.to_string(),
             visibility: match league_dto.visibility {
                 Some(visibility) => visibility.to_string(),
@@ -48,9 +45,10 @@ impl League {
     }
 }
 
-#[derive(Debug, Serialize, Deserialize, Clone)]
+#[derive(Debug, Serialize, Deserialize, Clone, PartialEq, Eq, PartialOrd, Ord, Default)]
 pub enum LeagueState {
     /// Taking new players
+    #[default]
     Open,
     /// No more people
     Closed
@@ -64,9 +62,10 @@ impl Display for LeagueState {
     }
 }
 
-#[derive(Debug, Serialize, Deserialize, Clone)]
+#[derive(Debug, Serialize, Deserialize, Clone, PartialEq, Eq, PartialOrd, Ord, Default)]
 pub enum LeagueVisibility {
     /// Open to anyone, anyone can join
+    #[default]
     Public,
     /// People request to join
     Private,

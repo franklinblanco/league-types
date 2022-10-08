@@ -1,9 +1,9 @@
 use chrono::NaiveDateTime;
-use serde::{Deserialize};
+use serde::{Deserialize, Serialize};
 use rust_decimal::Decimal;
 use crate::domain::league::LeagueVisibility;
 
-#[derive(Debug, Deserialize, Clone)]
+#[derive(Debug, Serialize, Deserialize, Clone, PartialEq, Eq, PartialOrd, Ord, Default)]
 pub struct LeagueForCreationDto{
     #[serde(rename = "userId")]
     pub user_id: u32,

@@ -3,7 +3,7 @@ use rust_decimal::Decimal;
 use serde::{Serialize, Deserialize};
 
 
-#[derive(Debug, Serialize, Deserialize)]
+#[derive(Debug, Serialize, Deserialize, Clone, PartialEq, Eq, PartialOrd, Ord, Default)]
 pub struct Field {
     pub id: u32,
     pub place_id: u32,

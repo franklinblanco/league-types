@@ -4,7 +4,7 @@ use serde::{Serialize, Deserialize};
 
 use crate::{domain::player::Player, APP_NAME};
 
-#[derive(Debug, Serialize, Deserialize)]
+#[derive(Debug, Serialize, Deserialize, Clone, PartialEq, Eq, PartialOrd, Ord, Default)]
 pub struct PlayerForCreationDto {
     #[serde(rename = "phoneNumber")]
     pub phone_number: String,
@@ -15,7 +15,7 @@ pub struct PlayerForCreationDto {
     pub country: String,
     pub city: String,
 }
-#[derive(Debug, Serialize, Deserialize)]
+#[derive(Debug, Serialize, Deserialize, Clone, PartialEq, Eq, PartialOrd, Ord, Default)]
 pub struct PlayerForUpdateDto {
     pub name: Option<String>,
     #[serde(rename = "birthDate")]
@@ -39,7 +39,7 @@ impl PlayerForCreationDto {
     }
 }
 
-#[derive(Debug, Serialize, Deserialize, Clone)]
+#[derive(Debug, Serialize, Deserialize, Clone, PartialEq, Eq, PartialOrd, Ord, Default)]
 pub struct PlayerProfileDto {
     pub name: String,
     pub country: String,

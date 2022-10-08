@@ -4,7 +4,7 @@ use serde::{Serialize, Deserialize};
 use crate::dto::trust::TrustRequestDto;
 
 
-#[derive(Debug, Serialize, Deserialize, Clone)]
+#[derive(Debug, Serialize, Deserialize, Clone, PartialEq, Eq, PartialOrd, Ord, Default)]
 pub struct Trust {
     pub id: u32,
     /// The player who is trusting (sending the trust request)
@@ -14,11 +14,9 @@ pub struct Trust {
     pub time_created: NaiveDateTime,
     pub last_updated: NaiveDateTime
 }
-impl Trust {
-    pub fn new_empty() -> Trust {
-        Trust { id: 0, truster_id: 0, trustee_id: 0, time_created: Utc::now().naive_utc(), last_updated: Utc::now().naive_utc() }
-    }
-    pub fn new_from_join_request(trust_dto: &TrustRequestDto) -> Trust {
+
+impl From<TrustRequestDto> for Trust {
+    fn from(trust_dto: TrustRequestDto) -> Self {
         Trust { id: 0, truster_id: trust_dto.truster_id, trustee_id: trust_dto.trustee_id, time_created: Utc::now().naive_utc(), last_updated: Utc::now().naive_utc() }
     }
 }

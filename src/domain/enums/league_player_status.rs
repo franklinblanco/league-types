@@ -3,10 +3,11 @@ use std::{fmt::Display, str::FromStr};
 use serde::{Serialize, Deserialize};
 use err::Error;
 
-#[derive(Debug, Serialize, Deserialize, Clone)]
+#[derive(Debug, Serialize, Deserialize, Clone, PartialEq, Eq, PartialOrd, Ord, Default)]
 pub enum LeaguePlayerStatus {
     Denied,
     Joined,
+    #[default]
     Requested,
     Kicked
 }
