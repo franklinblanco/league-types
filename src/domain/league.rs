@@ -1,6 +1,6 @@
 use std::{fmt::Display, str::FromStr};
 
-use chrono::{NaiveDateTime, Utc};
+use chrono::{Utc, DateTime};
 use err::Error;
 use serde::{Serialize, Deserialize};
 use rust_decimal::Decimal;
@@ -15,13 +15,13 @@ pub struct League {
     pub owner_id: u32,
     pub sport_id: u32,
     pub place_id: u32,
-    pub time_created: NaiveDateTime,
-    pub last_updated: NaiveDateTime,
+    pub time_created: DateTime<Utc>,
+    pub last_updated: DateTime<Utc>,
     /// State as in: Is the league open or closed? Not the geographical sense.
     pub state: String,
     pub visibility: String,
     /// When is the league happening?
-    pub date_and_time: NaiveDateTime, //TODO: Switch from NaiveDateTime to TimeZones
+    pub date_and_time: DateTime<Utc>, //TODO: Switch from DateTime<Utc> to TimeZones
     /// This will be stored as a Decimal in the database but the actual input from the user
     /// will not be in rust_decimal::Decimal type.
     pub cost_to_join: Decimal,
@@ -35,7 +35,7 @@ pub struct League {
 impl From<LeagueForCreationDto> for League {
     fn from(league_dto: LeagueForCreationDto) -> Self {
         Self { 
-            id: 0, owner_id: league_dto.user_id, sport_id: league_dto.sport_id, place_id:league_dto.place_id, time_created: Utc::now().naive_utc(), last_updated: Utc::now().naive_utc(), state: LeagueState::Open.to_string(),
+            id: 0, owner_id: league_dto.user_id, sport_id: league_dto.sport_id, place_id:league_dto.place_id, time_created: Utc::now(), last_updated: Utc::now(), state: LeagueState::Open.to_string(),
             visibility: match league_dto.visibility {
                 Some(visibility) => visibility.to_string(),
                 None => LeagueVisibility::Public.to_string(),

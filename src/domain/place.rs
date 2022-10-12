@@ -1,11 +1,11 @@
-use chrono::{NaiveDateTime};
+use chrono::{Utc, DateTime};
 use serde::{Serialize, Deserialize};
 
 #[derive(Debug, Serialize, Deserialize, Clone, PartialEq, Eq, PartialOrd, Ord, Default)]
 pub struct Place{
     pub id: u32,
-    pub time_created: NaiveDateTime,
-    pub last_updated: NaiveDateTime,
+    pub time_created: DateTime<Utc>,
+    pub last_updated: DateTime<Utc>,
     pub name: String,
     pub sport_id: u32,
     pub country: String,

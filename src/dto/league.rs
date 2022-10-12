@@ -1,4 +1,4 @@
-use chrono::NaiveDateTime;
+use chrono::{Utc, DateTime};
 use serde::{Deserialize, Serialize};
 use rust_decimal::Decimal;
 use crate::domain::league::LeagueVisibility;
@@ -15,7 +15,7 @@ pub struct LeagueForCreationDto{
     pub place_id: u32,
     pub visibility: Option<LeagueVisibility>,
     #[serde(rename = "dateAndTime")]
-    pub date_and_time: NaiveDateTime,
+    pub date_and_time: DateTime<Utc>,
     #[serde(rename = "costToJoin")]
     pub cost_to_join: Decimal,
     pub currency: Option<String>,
