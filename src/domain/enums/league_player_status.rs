@@ -1,4 +1,4 @@
-use std::{fmt::Display, str::FromStr};
+use std::{fmt::{Display}, str::FromStr};
 
 use serde::{Serialize, Deserialize};
 use err::Error;
@@ -10,7 +10,8 @@ pub enum LeaguePlayerStatus {
     #[default]
     Requested,
     Kicked,
-    Left
+    Left,
+    Invited
 }
 impl Display for LeaguePlayerStatus {
     fn fmt(&self, f: &mut std::fmt::Formatter<'_>) -> std::fmt::Result {
@@ -19,7 +20,8 @@ impl Display for LeaguePlayerStatus {
             LeaguePlayerStatus::Joined => write!(f, "Joined"),
             LeaguePlayerStatus::Requested => write!(f, "Requested"),
             LeaguePlayerStatus::Kicked => write!(f, "Kicked"),
-            LeaguePlayerStatus::Left => write!(f, "Left")
+            LeaguePlayerStatus::Left => write!(f, "Left"),
+            LeaguePlayerStatus::Invited => write!(f, "Invited")
         }
     }
 }
@@ -33,6 +35,7 @@ impl FromStr for LeaguePlayerStatus {
             "Requested" => Ok(Self::Requested),
             "Kicked" => Ok(Self::Kicked),
             "Left" => Ok(Self::Requested),
+            "Invited" => Ok(Self::Invited),
             _ => Err(Error::Unspecified) //TODO: Create ParseStr error in actix_web_utils
         }
     }
