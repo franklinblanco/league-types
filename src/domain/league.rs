@@ -21,7 +21,7 @@ pub struct League {
     pub state: String,
     pub visibility: String,
     /// When is the league happening?
-    pub date_and_time: DateTime<Utc>, //TODO: Switch from DateTime<Utc> to TimeZones
+    pub date_and_time: DateTime<Utc>,
     /// This will be stored as a Decimal in the database but the actual input from the user
     /// will not be in rust_decimal::Decimal type.
     pub cost_to_join: Decimal,
