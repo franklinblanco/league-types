@@ -5,13 +5,21 @@ use err::Error;
 
 #[derive(Debug, Serialize, Deserialize, Clone, PartialEq, Eq, PartialOrd, Ord, Default)]
 pub enum LeaguePlayerStatus {
+    /// The player requested to join but got denied by the league owner
     Denied,
+    /// The player joined either by getting accepted or by joining an open league
     Joined,
+    /// The player is requesting to join a league
     #[default]
     Requested,
+    /// The player was already in a league and was kicked out.
+    /// Can't request to join after this.
     Kicked,
+    /// The player exited the league queue (Exited before request being approved)
     Left,
+    /// Player was invited to join league
     Invited,
+    /// Player was already in a league and decided to canel (Only way to come back is through invites)
     Canceled,
 }
 impl Display for LeaguePlayerStatus {
