@@ -11,7 +11,8 @@ pub enum LeaguePlayerStatus {
     Requested,
     Kicked,
     Left,
-    Invited
+    Invited,
+    Canceled,
 }
 impl Display for LeaguePlayerStatus {
     fn fmt(&self, f: &mut std::fmt::Formatter<'_>) -> std::fmt::Result {
@@ -21,7 +22,8 @@ impl Display for LeaguePlayerStatus {
             LeaguePlayerStatus::Requested => write!(f, "Requested"),
             LeaguePlayerStatus::Kicked => write!(f, "Kicked"),
             LeaguePlayerStatus::Left => write!(f, "Left"),
-            LeaguePlayerStatus::Invited => write!(f, "Invited")
+            LeaguePlayerStatus::Invited => write!(f, "Invited"),
+            LeaguePlayerStatus::Canceled => write!(f, "Canceled")
         }
     }
 }
@@ -36,6 +38,7 @@ impl FromStr for LeaguePlayerStatus {
             "Kicked" => Ok(Self::Kicked),
             "Left" => Ok(Self::Requested),
             "Invited" => Ok(Self::Invited),
+            "Canceled" => Ok(Self::Canceled),
             _ => Err(Error::Unspecified) //TODO: Create ParseStr error in actix_web_utils
         }
     }
