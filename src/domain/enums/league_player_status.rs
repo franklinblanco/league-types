@@ -49,7 +49,28 @@ impl FromStr for LeaguePlayerStatus {
             "Left" => Ok(Self::Requested),
             "Invited" => Ok(Self::Invited),
             "Canceled" => Ok(Self::Canceled),
-            _ => Err(Error::Unspecified) //TODO: Create ParseStr error in actix_web_utils
+            _ => Err(Error::Unspecified),
+        }
+    }
+}
+
+pub enum StatusType {
+    /// Inside a league
+    Active,
+    /// Either outside of a league, or attempting to join
+    Inactive,
+}
+
+impl LeaguePlayerStatus {
+    pub fn get_status_type(&self) -> StatusType {
+        match self {
+            LeaguePlayerStatus::Denied => StatusType::Inactive,
+            LeaguePlayerStatus::Joined => StatusType::Active,
+            LeaguePlayerStatus::Requested => StatusType::Inactive,
+            LeaguePlayerStatus::Kicked => StatusType::Inactive,
+            LeaguePlayerStatus::Left => StatusType::Inactive,
+            LeaguePlayerStatus::Invited => StatusType::Inactive,
+            LeaguePlayerStatus::Canceled => StatusType::Inactive,
         }
     }
 }
