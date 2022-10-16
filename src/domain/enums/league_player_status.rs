@@ -8,8 +8,10 @@ pub enum LeaguePlayerStatus {
     /// The player requested to join but got denied by the league owner
     Denied,
     /// The player joined either by getting accepted or by joining an open league
+    /// Active group (Can only have one at a time)
     Joined,
     /// The player is requesting to join a league
+    /// Active group (Can only have one at a time)
     #[default]
     Requested,
     /// The player was already in a league and was kicked out.
