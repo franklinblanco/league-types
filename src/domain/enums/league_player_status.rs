@@ -54,6 +54,7 @@ impl FromStr for LeaguePlayerStatus {
     }
 }
 
+#[derive(Debug, Serialize, Deserialize, Clone, PartialEq, Eq, PartialOrd, Ord)]
 pub enum StatusType {
     /// Inside a league
     Active,
