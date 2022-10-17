@@ -66,7 +66,7 @@ impl LeaguePlayerStatus {
         match self {
             LeaguePlayerStatus::Denied => StatusType::Inactive,
             LeaguePlayerStatus::Joined => StatusType::Active,
-            LeaguePlayerStatus::Requested => StatusType::Inactive,
+            LeaguePlayerStatus::Requested => StatusType::Active,
             LeaguePlayerStatus::Kicked => StatusType::Inactive,
             LeaguePlayerStatus::Left => StatusType::Inactive,
             LeaguePlayerStatus::Invited => StatusType::Inactive,
