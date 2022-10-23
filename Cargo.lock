@@ -60,7 +60,7 @@ checksum = "5827cebf4670468b8772dd191856768aedcb1b0278a04f989f7766351917b9dc"
 [[package]]
 name = "dev-dtos"
 version = "0.1.0"
-source = "git+https://github.com/franklinblanco/user-dtos.git#3b3ffde695753edb4e7ffdf722299b372f2c0bd0"
+source = "git+https://github.com/franklinblanco/user-svc-dtos-rust.git#80abf74269baf13b9fc1d186516564b0d4521270"
 dependencies = [
  "chrono",
  "serde",
