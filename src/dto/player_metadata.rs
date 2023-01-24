@@ -18,3 +18,7 @@ impl From<Player> for PlayerMetadata {
     }
 }
 
+#[derive(Debug, Serialize, Deserialize, Clone, PartialEq, Eq, PartialOrd, Ord, Default)]
+pub struct PlayerIds {
+    pub ids: Vec<u32>
+}
