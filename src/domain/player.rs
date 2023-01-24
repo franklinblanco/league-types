@@ -1,10 +1,11 @@
 use chrono::{Utc, DateTime, NaiveDate};
 use serde::{Serialize, Deserialize};
+use sqlx::FromRow;
 
 use crate::dto::player::PlayerForCreationDto;
 
 //TODO: Remove sensitive information from player struct
-#[derive(Debug, Serialize, Deserialize, Clone, PartialEq, Eq, PartialOrd, Ord, Default)]
+#[derive(Debug, Serialize, Deserialize, Clone, PartialEq, Eq, PartialOrd, Ord, Default, FromRow)]
 pub struct Player {
     pub id: u32,
     pub time_created: DateTime<Utc>,

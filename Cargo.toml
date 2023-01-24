@@ -14,6 +14,9 @@ repository = "https://github.com/franklinblanco/league-types.git"
 serde = { version = "1.0", features = ["derive"] }
 chrono = { version = "0.4", features = [ "serde" ] }
 rust_decimal = "1.26"
+sqlx = { version = "0.6", features = [ "runtime-tokio-native-tls" , "mysql" ] }
+tokio = { version = "1", features = ["full"] }
+
 
 err = { git = "https://github.com/franklinblanco/err.git" }
 dev-dtos = { git = "https://github.com/franklinblanco/user-svc-dtos-rust.git" }
